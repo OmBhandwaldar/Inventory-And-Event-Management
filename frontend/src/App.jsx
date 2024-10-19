@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div>
-        sign up / log in
+       Ashitosh
       </div>
     </>
   )
