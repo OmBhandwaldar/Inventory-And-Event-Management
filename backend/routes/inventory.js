@@ -1,6 +1,5 @@
 const express = require('express');
-import { Inventory } from '../db';
-import { authenticate } from '../middleware';
+const { User, Inventory, Event } = require('../db');
 const jwt = require('jsonwebtoken');
 const PDFDocument = require('pdfkit');
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -52,3 +51,5 @@ router.get('/', async (req, res) => {
 //     res.status(500).json({ message: 'Error generating PDF report', error });
 //   }
 // });
+
+module.exports = router;

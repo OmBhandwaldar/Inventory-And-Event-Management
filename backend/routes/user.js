@@ -1,7 +1,6 @@
 const express = require('express');
 const zod = require('zod');
-import { User, Inventory, Event } from '../db';
-import { authenticate } from '../middleware';
+const { User } = require('../db');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 const router = express.Router();
@@ -12,7 +11,7 @@ const signupSchema = zod.object({
     lastName: zod.string(),
     password: zod.string().min(6),
     role: zod.string(),
-    prn: z.string().optional() // PRN is optional by default
+    prn: zod.string().optional() // PRN is optional by default
 })
 // .refine(data => {
 //     // Check if role is 'student' and PRN is provided
@@ -93,3 +92,4 @@ router.post("/signin", async(req, res)=>{
     })
 });
 
+module.exports = router;
