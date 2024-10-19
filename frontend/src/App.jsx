@@ -1,16 +1,13 @@
 // import './App.css'
-import AppDrawer from "./inventory/AppDrawer"
-import ListBar from './inventory/ListBar'
+import Header from "./header/Header.jsx"
+import Inventory from "./inventory/Inventory.jsx"
 
 function App() {
  
 
   return (
     <>
-      <div>
-        <ListBar/>
-        <AppDrawer/>
-      </div>
+      <Header />
     </>
   )
 }
