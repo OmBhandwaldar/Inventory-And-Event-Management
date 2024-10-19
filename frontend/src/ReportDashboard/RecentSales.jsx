@@ -18,7 +18,7 @@ const salesData = [
 
 const RecentSales = () => {
   return (
-    <div className="bg-gray-800 p-6 rounded-lg w-full md:w-1/4">
+    <div className="bg-gray-800 p-6 rounded-lg w-full md:w-1/3">
       <h2 className="text-lg mb-4">Recent Sales</h2>
       <p className="mb-4">You made 265 sales this month.</p>
       <ul>

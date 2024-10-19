@@ -1,8 +1,8 @@
 /* Full-width container for the calendar */
 .calendar-container {
-  width: 100%;            /* Ensure it occupies full width */
-  max-width: 1200px;       /* Max width for responsiveness */
-  margin: 0 auto;          /* Center align */
+  width: 100%; /* Ensure it occupies full width */
+  max-width: 1200px; /* Max width for responsiveness */
+  margin: 0 auto; /* Center align */
   padding: 20px;
   box-sizing: border-box;
   background-color: #f9f9f9; /* Light background for contrast */
@@ -14,8 +14,8 @@
 .react-calendar {
   width: 100%;
   max-width: 100%;
-  border: none;            /* Remove default border */
-  font-size: 1.2rem;       /* Make text slightly larger */
+  border: none; /* Remove default border */
+  font-size: 1.2rem; /* Make text slightly larger */
 }
 
 /* Style for event dates (highlighted) */
@@ -30,21 +30,21 @@
 .react-calendar__tile {
   padding: 20px;
   font-size: 1rem;
-  border: 1px solid #ddd;   /* Add borders for visibility */
+  border: 1px solid #ddd; /* Add borders for visibility */
   box-sizing: border-box;
 }
 
 /* Add hover effect on calendar tiles */
 .react-calendar__tile:hover {
-  background-color: #ddd;    /* Highlight on hover */
+  background-color: #ddd; /* Highlight on hover */
   cursor: pointer;
 }
 
 /* Ensure proper spacing */
 .react-calendar__month-view__days__day--weekend {
-  color:'';            /* Change weekend day color to red */
+  color: ""; /* Change weekend day color to red */
 }
 
-.react-calendar__tile--now{
+.react-calendar__tile--now {
   background-color: yellow;
 }

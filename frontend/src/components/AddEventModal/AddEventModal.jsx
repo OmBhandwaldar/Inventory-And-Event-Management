@@ -1,12 +1,12 @@
 // src/components/AddEventModal.jsx
-import { useState } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
-import './AddEventModal.css'; // Optional: Add your styles
+import { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
+import "./AddEventModal.css"; // Optional: Add your styles
 
 const AddEventModal = ({ onAddEvent, onClose }) => {
-  const [title, setTitle] = useState('');
-  const [time, setTime] = useState('');
-  const [details, setDetails] = useState('');
+  const [title, setTitle] = useState("");
+  const [time, setTime] = useState("");
+  const [details, setDetails] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,16 +44,17 @@ const AddEventModal = ({ onAddEvent, onClose }) => {
           />
         </div>
         <button type="submit">Add Event</button>
-        <button type="button" onClick={onClose}>Cancel</button>
+        <button type="button" onClick={onClose}>
+          Cancel
+        </button>
       </form>
     </div>
   );
 };
 
-
 AddEventModal.propTypes = {
-  onAddEvent: PropTypes.func.isRequired, 
-  onClose: PropTypes.func.isRequired,     
+  onAddEvent: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default AddEventModal;

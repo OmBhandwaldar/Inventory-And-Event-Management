@@ -1,19 +1,19 @@
 // src/components/EventDetails/EventDetails.jsx
-import { useLocation, useNavigate } from 'react-router-dom'; 
-import './EventDetails.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import "./EventDetails.css";
 
 const EventDetails = () => {
-  const location = useLocation(); 
-  const navigate = useNavigate(); 
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const event = location.state?.event; 
+  const event = location.state?.event;
 
   const handleClose = () => {
-    navigate('/'); 
+    navigate("/");
   };
 
   if (!event) {
-    return <p>No event details available.</p>; 
+    return <p>No event details available.</p>;
   }
 
   return (

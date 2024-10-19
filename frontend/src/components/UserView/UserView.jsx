@@ -1,9 +1,9 @@
-import CalendarWithEvents from "../CalendarWithEvents/CalendarWithEvents"
+import CalendarWithEvents from "../CalendarWithEvents/CalendarWithEvents";
 
 export default function UserView() {
   return (
     <div>
-      <CalendarWithEvents/>
+      <CalendarWithEvents />
     </div>
-  )
+  );
 }

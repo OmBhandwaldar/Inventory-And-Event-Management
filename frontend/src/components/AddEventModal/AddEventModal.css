@@ -1,28 +1,27 @@
 /* src/components/AddEventModal.css */
 .add-event-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    z-index: 1000; /* Make sure it's above other content */
-  }
-  
-  .add-event-modal h2 {
-    margin: 0 0 10px;
-  }
-  
-  .add-event-modal input,
-  .add-event-modal textarea {
-    width: 100%;
-    margin: 5px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
-  }
-  
-  .add-event-modal button {
-    margin-right: 10px;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 1000; /* Make sure it's above other content */
+}
+
+.add-event-modal h2 {
+  margin: 0 0 10px;
+}
+
+.add-event-modal input,
+.add-event-modal textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.add-event-modal button {
+  margin-right: 10px;
+}

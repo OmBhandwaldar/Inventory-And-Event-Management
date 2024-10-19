@@ -14,7 +14,7 @@ const Dashboard = () => {
       <OverviewCards />
 
       {/* Overview Chart and Recent Sales */}
-      <div className="flex flex-wrap justify-between mt-8 gap-4">
+      <div className="flex flex-wrap justify-between mt-8 gap-6">
         <BarChartComponent />
         <RecentSales />
       </div>
