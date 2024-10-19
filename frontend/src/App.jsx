@@ -4,13 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
+<<<<<<< HEAD
       <div>
         sign up / log in
       </div>
+=======
+      
+>>>>>>> 8d61f58a8c2d53a2aed86bcfb58a870d79a27680
     </>
   )
 }
