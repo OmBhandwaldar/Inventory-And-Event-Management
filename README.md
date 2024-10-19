@@ -1,1 +1,0 @@
-# Inventory-And-Event-Management
