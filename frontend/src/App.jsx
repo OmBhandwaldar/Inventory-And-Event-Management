@@ -8,7 +8,9 @@ function App() {
 
   return (
     <>
-      <h1>hello</h1>
+      <div>
+        sign up / log in
+      </div>
     </>
   )
 }
