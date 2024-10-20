@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={isAdmin ? <AdminView /> : <UserView />} />
           <Route path="/event-details" element={<EventDetails />}></Route>
           {/* <Route path="/temp" element = {<InventoryReport/>}></Route> */}
-          {/* <Route path="/inventory" element={<Layout />}></Route> */}
+
           <Route path="/user-view" element={<UserView />}></Route>
           <Route path="/admin-view" element={<AdminView />}></Route>
           <Route path="/event-details" element={<EventDetails />}></Route>

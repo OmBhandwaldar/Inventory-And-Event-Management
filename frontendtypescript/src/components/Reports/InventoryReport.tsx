@@ -1,5 +1,5 @@
+import { useState, useRef, useEffect } from "react";
 import SearchBar from "@/utils/SearchBar";
-import { useEffect, useState } from "react";
 
 const InventoryReport = () => {
   const [inventoryData, setInventoryData] = useState([
@@ -8,149 +8,186 @@ const InventoryReport = () => {
       itemName: "Projector",
       quantity: 5,
       description: "High-resolution projectors for events and classrooms.",
+      branch: "Computer",
+      event: true,
+      eventName: "Mrigaya",
     },
-    {
-      _id: "2",
-      itemName: "Whiteboard Markers",
-      quantity: 50,
-      description: "Markers for use in classrooms and conferences.",
-    },
-    {
-      _id: "3",
-      itemName: "Microphone",
-      quantity: 10,
-      description: "Wireless microphones for conferences and guest lectures.",
-    },
-    {
-      _id: "4",
-      itemName: "Chairs",
-      quantity: 200,
-      description: "Plastic chairs for outdoor events.",
-    },
-    {
-      _id: "5",
-      itemName: "Laptop",
-      quantity: 15,
-      description: "Laptops for workshop use and presentations.",
-    },
-    {
-      _id: "6",
-      itemName: "Sound System",
-      quantity: 3,
-      description: "Complete sound system setup with speakers and mixer.",
-    },
-    {
-      _id: "7",
-      itemName: "Stage Lights",
-      quantity: 8,
-      description: "LED stage lights for events.",
-    },
-    {
-      _id: "8",
-      itemName: "HD Camera",
-      quantity: 4,
-      description: "HD cameras for event recordings.",
-    },
-    {
-      _id: "9",
-      itemName: "Tables",
-      quantity: 30,
-      description: "Folding tables for use in events and workshops.",
-    },
-    {
-      _id: "10",
-      itemName: "Podium",
-      quantity: 2,
-      description: "Wooden podiums for guest lectures and presentations.",
-    },
+    // Other inventory items...
   ]);
-  //   const [loading, setLoading] = useState<Boolean>(true);
-  // const [error, setError] = useState<String>('null');
 
-  // useEffect(() => {
-  //   const fetchInventoryData = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:3000/api/v1/reports/inventory');
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch inventory data');
-  //       }
-  //       const data = await response.json();
-  //       setInventoryData(data);
-  //     } catch (error) {
-  //       console.error('Error fetching inventory data:', error);
-  //       setError('Failed to load inventory data. Please try again later.');
-  //     } finally {
-  //       setLoading(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  // Download file from server
+  //original
+  // const downloadFile = async (fileType: string) => {
+  //   const endpoint =
+  //     fileType === "csv" ? "/api/v1/reports/inventory/csv" : "/api/v1/reports/inventory/pdf";
+    
+  //   try {
+  //     const response = await fetch(endpoint, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': fileType === 'csv' ? 'text/csv' : 'application/pdf',
+  //       },
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error('Failed to download file');
   //     }
-  //   };
 
-  //   fetchInventoryData();
-  //   console.log("First run...");
-  // }, []);
+  //     const blob = await response.blob(); // Convert response to blob
+  //     const url = window.URL.createObjectURL(blob); // Create URL for file
 
-  // if (loading) {
-  //   return <p>Loading inventory data...</p>;
-  // }
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.download = `inventory_report.${fileType}`; // Set the file name
+  //     document.body.appendChild(link); // Append link to body
+  //     link.click(); // Simulate click to download the file
+  //     link.remove(); // Clean up
+  //   } catch (error) {
+  //     console.error("Error downloading the file:", error);
+  //   }
+  // };
 
-  // if (error) {
-  //   return <p>{error}</p>;
-  // }
+  const downloadFile = async (fileType: string) => {
+    const endpoint = fileType === "csv" ? "http://localhost:3000/api/v1/reports/inventory/csv" : "http://localhost:3000/api/v1/reports/inventory/pdf";
+    
+    try {
+      const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          'Content-Type': fileType === 'csv' ? 'text/csv' : 'application/pdf',
+          'Cache-Control': 'no-cache', // Bypass cache
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to download file');
+      }
+  
+      const blob = await response.blob(); 
+      const url = window.URL.createObjectURL(blob); 
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `inventory_report.${fileType}`; 
+      document.body.appendChild(link);
+      link.click(); 
+      link.remove();
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+    }
+  };
+
+  const handleDownload = (fileType: string) => {
+    setIsDropdownOpen(false);
+    downloadFile(fileType);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <div className="flex justify-between mb-5">
         <SearchBar />
-        <div>
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Default</button>
-          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Default</button>
+        <div className="relative">
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            onClick={toggleDropdown}
+          >
+            Download
+          </button>
+
+          {isDropdownOpen && (
+            <div
+              ref={dropdownRef}
+              className="absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-10"
+            >
+              <button
+                onClick={() => handleDownload("csv")}
+                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+              >
+                Download as CSV
+              </button>
+              <button
+                onClick={() => handleDownload("pdf")}
+                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+              >
+                Download as PDF
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Table code remains unchanged */}
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Quantity
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Description
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {inventoryData.map((item) => (
-              <tr
-                key={item._id}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" className="px-6 py-3">
+            Product name
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Quantity
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Branch
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Event
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Event Name
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {inventoryData.map((item) => (
+          <tr
+            key={item._id}
+            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          >
+            <th
+              scope="row"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {item.itemName}
+            </th>
+            <td className="px-6 py-4">{item.quantity}</td>
+            <td className="px-6 py-4">{item.branch}</td>
+            <td className="px-6 py-4">{item.event === false ? 'none' : 'True'}</td>
+            <td className="px-6 py-4">{item.eventName === null ? 'none': item.eventName}</td>
+            <td className="px-6 py-4">
+              <a
+                href="#"
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
               >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {item.itemName}
-                </th>
-                <td className="px-6 py-4">{item.quantity}</td>
-                <td className="px-6 py-4">{item.description}</td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                Edit
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
     </>
   );
 };

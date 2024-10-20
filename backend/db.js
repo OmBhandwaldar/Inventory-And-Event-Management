@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://om:MongoDB@cluster0.6j2klfh.mongodb.net/")
+// mongoose.connect("mongodb+srv://om:MongoDB@cluster0.6j2klfh.mongodb.net/")
 
 const userRegSchema = new mongoose.Schema({
     firstName: {
