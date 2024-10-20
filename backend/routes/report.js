@@ -1,7 +1,7 @@
 const express = require('express');
 const { Parser } = require('json2csv');
 const PDFDocument = require('pdfkit');
-const Inventory = require('../db'); // Assuming you have a properly set up MongoDB schema for Inventory
+const {Inventory} = require('../db'); // Assuming you have a properly set up MongoDB schema for Inventory
 
 const router = express.Router();
 
@@ -82,17 +82,20 @@ router.get('/inventory/pdf', async (req, res) => {
     .stroke();
 
   // Inventory data (replace with actual MongoDB data)
-  const inventoryData = [
-    {
-      _id: "1",
-      itemName: "Projector",
-      quantity: 5,
-      branch: "Computer",
-      event: true,
-      eventName: "Mrigaya",
-    },
-    // Add more items as required
-  ];
+  // const inventoryData = [
+  //   {
+  //     _id: "1",
+  //     itemName: "Projector",
+  //     quantity: 5,
+  //     branch: "Computer",
+  //     event: true,
+  //     eventName: "Mrigaya",
+  //   },
+  //   // Add more items as required
+  // ];
+
+  const inventoryData = await Inventory.find({});
+  console.log('Inventory Data:',inventoryData)
 
 
   const rowHeight = 30; // Row height
