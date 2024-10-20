@@ -92,14 +92,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         </nav>
 
         {/* Logout */}
-        <div className="p-4">
+        {/* <div className="p-4">
           <SidebarItem
             icon={<FaSignOutAlt />}
             label="Logout"
             href="/logout"
             isOpen={isOpen}
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Main Content Area */}
