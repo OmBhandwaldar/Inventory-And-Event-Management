@@ -58,7 +58,7 @@ function App() {
             path="/add-event"
             element={
               <Sidebar>
-                <AddEvent />
+                <AddEventModal />
               </Sidebar>
             }
           ></Route>
