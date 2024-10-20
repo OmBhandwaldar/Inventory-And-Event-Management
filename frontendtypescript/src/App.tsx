@@ -75,7 +75,7 @@ function App() {
           ></Route>
           <Route path="/event-details" element={<EventDetails />}></Route>
           <Route
-            path="/temp"
+            path="/inventoryreports"
             element={
               <Sidebar>
                 <InventoryReport />
