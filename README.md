@@ -37,6 +37,11 @@
 # Day having event will show the effect
 ![image](https://github.com/user-attachments/assets/a4ae4f51-2d6a-4cc1-8a33-34d9fdd3d92d)
 
+![image](https://github.com/user-attachments/assets/5d27f753-d67d-4a8b-b528-4434ad2757bc)
+![image](https://github.com/user-attachments/assets/bd898bdd-35bc-4bdf-b69d-6bff3f9e3808)
+![image](https://github.com/user-attachments/assets/14f9d04d-5aa7-49d2-a3ab-7f9f90a97783)
+
+
 ### Deployed URL
  [Link to Deployed Solution]
 
