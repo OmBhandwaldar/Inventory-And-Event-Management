@@ -1,0 +1,22 @@
+.event-details-modal {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: auto;
+  position: relative;
+}
+
+.event-details-modal button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event-details-modal button:hover {
+  background-color: #0056b3;
+}
