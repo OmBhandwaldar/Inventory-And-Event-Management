@@ -65,6 +65,26 @@ const inventorySchema = new mongoose.Schema({
     description: { 
         type: String
     },
+    branch: {
+        type: String,
+        enum: ['admin', 'teacher', 'student'],
+        required: true
+    },
+      // Conditionally required field for event name, only if event is true
+      eventName: { 
+        type: String, 
+        required: function() { 
+            return this.event === true; 
+        }, 
+        validate: {
+            // validator: function(value: string) {
+            validator: function(value) {
+                // Ensure eventName is not empty if event is true
+                return this.event === false || (this.event === true && value && value.length > 0);
+            },
+            message: "Event name is required if the item is used in an event."
+        }
+    },
     createdBy: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: "User" 
