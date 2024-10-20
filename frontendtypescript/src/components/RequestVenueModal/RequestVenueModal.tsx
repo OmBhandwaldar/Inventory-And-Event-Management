@@ -44,7 +44,9 @@ const RequestVenueModal: React.FC<RequestVenueModalProps> = ({
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Request Venue: {selectedVenue}</h2>
+        <h2 className="text-2xl font-bold mb-4">
+          Request Venue: {selectedVenue}
+        </h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="flex justify-end">
           <button

@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  FaHome,
-  FaUsers,
-  FaChartLine,
-  FaCog,
+  // FaHome,
+  // FaUsers,
+  // FaChartLine,
+  // FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { HiMenuAlt3 } from "react-icons/hi";
+// import { HiMenuAlt3 } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 interface NavbarItemProps {

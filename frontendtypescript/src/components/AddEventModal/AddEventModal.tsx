@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import VenueManagement from "../VenueManagement/VenueManagement";
 
 interface AddEventModalProps {
-  onAddEvent: (event: { title: string; fromTime: string; toTime: string; details: string; venue: string }) => void;
+  onAddEvent: (event: {
+    title: string;
+    fromTime: string;
+    toTime: string;
+    details: string;
+    venue: string;
+  }) => void;
   onClose: () => void;
   selectedDate: Date;
 }
 
-const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) => {
+const AddEventModal: React.FC<AddEventModalProps> = ({
+  onAddEvent,
+  onClose,
+}) => {
   const [title, setTitle] = useState("");
   const [fromTime, setFromTime] = useState("");
   const [toTime, setToTime] = useState("");
@@ -19,7 +28,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) =>
     setVenue(requestedVenue);
     setShowVenueManagement(false);
   };
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onAddEvent({ title, fromTime, toTime, details, venue });
@@ -105,7 +114,9 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) =>
           </div>
         </form>
 
-        {showVenueManagement && <VenueManagement onSelectVenue={handleVenueRequest} />}
+        {showVenueManagement && (
+          <VenueManagement onSelectVenue={handleVenueRequest} />
+        )}
       </div>
     </div>
   );
