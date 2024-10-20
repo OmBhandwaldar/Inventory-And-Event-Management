@@ -6,7 +6,7 @@ import Dashboard from "./ReportDashboard/Dashboard";
 import UserView from "./components/UserView/UserView";
 import AdminView from "./components/AdminView/AdminView";
 import EventDetails from "./components/EventDetails/EventDetails";
-import AddEvent from "./components/EventDetails/EventDetails";
+import AddEventModal from "./components/AddEventModal/AddEventModal";
 
 // import EventDetails from "./components/EventDetails/EventDetails";
 // import UserView from "./components/UserView/UserView";
@@ -34,12 +34,8 @@ function App() {
     
           <Route path="/" element={isAdmin ? <AdminView /> : <UserView />} />
           <Route path="/event-details" element={<EventDetails />}></Route>
-          <Route path="/add-event" element={<AddEvent />}></Route>
           {/* <Route path="/temp" element = {<InventoryReport/>}></Route> */}
 
-          <Route path="/user-view" element={<UserView />}></Route>
-          <Route path="/admin-view" element={<AdminView />}></Route>
-          <Route path="/event-details" element={<EventDetails />}></Route>
           <Route path="/temp" element={<InventoryReport />}></Route>
         </Routes>
       </Router>
