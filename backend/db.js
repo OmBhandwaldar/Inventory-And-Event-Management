@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect("mongodb+srv://ashitosh123:ashitosh@cluster0.yva6o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL)
 
 const userRegSchema = new mongoose.Schema({
     firstName: {
