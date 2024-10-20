@@ -8,7 +8,8 @@ import './CalendarWithEvents.css'; // Ensure to import the CSS file
 
 interface Event {
   title: string;
-  time: string;
+  fromTime: string;
+  toTime: string;
   details: string;
 }
 
@@ -20,22 +21,26 @@ const eventsDataInitial: Record<string, Event[]> = {
   "2024-10-20": [
     {
       title: "Meeting with Team",
-      time: "10:00 AM",
+      fromTime: "10:00 AM",
+      toTime: "05:00 PM",
       details: "Discuss project updates and next steps.",
     },
   ],
   "2024-10-11": [
     {
       title: "Project Deadline",
-      time: "5:00 PM",
+      fromTime: "10:00 AM",
+      toTime: "05:00 PM",
       details: "Submit the final project report.",
     },
-    { title: "Gym", time: "7:00 PM", details: "Attend yoga class." },
+    { title: "Gym", fromTime: "10:00 AM",
+      toTime: "05:00 PM", details: "Attend yoga class." },
   ],
   "2024-10-22": [
     {
       title: "Running",
-      time: "7:00 PM",
+      fromTime: "10:00 AM",
+      toTime: "05:00 PM",
       details: "Evening run at the park.",
     },
   ],
@@ -96,7 +101,7 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
               className="p-4 bg-blue-100 rounded-lg cursor-pointer hover:bg-blue-200 transition-colors"
               onClick={() => handleEventClick(event)}
             >
-              <strong>{event.title}</strong> at {event.time}
+              <strong>{event.title}</strong> at {event.fromTime}
             </li>
           ))}
         </ul>
@@ -118,9 +123,16 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
         <AddEventModal
           onAddEvent={handleAddEvent}
           onClose={() => setShowAddEventModal(false)}
-          selectedDate={selectedDate} // Pass selectedDate here
         />
       )}
+
+    {showAddEventModal && (
+      <AddEventModal
+        onAddEvent={handleAddEvent}
+        onClose={() => setShowAddEventModal(false)}
+        selectedDate={selectedDate} // Pass selectedDate here
+      />
+    )}
 
     </div>
   );

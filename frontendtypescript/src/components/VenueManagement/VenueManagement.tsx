@@ -31,7 +31,7 @@ const VenueManagement: React.FC<{ onSelectVenue: (venue: string) => void }> = ({
         {sortedByAvailability ? "Show All Venues" : "Show Available Venues"}
       </button>
 
-      <ul className="space-y-2">
+      <ul className="max-h-60 overflow-y-auto space-y-2">
         {sortedVenues.map((venue, index) => (
           <li key={index} className={`p-4 ${venue.isAvailable ? "bg-green-100" : "bg-red-100"} rounded-md`}>
             <span>{venue.name} ({venue.type})</span>

@@ -13,7 +13,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose, sele
     setVenue(requestedVenue);
     setShowVenueManagement(false);
   };
-
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onAddEvent({ title, fromTime, toTime, details, venue });
@@ -22,7 +22,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose, sele
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md max-h-[90vh] overflow-y-auto">
         <h2 className="text-2xl font-bold mb-4">Add Event</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

@@ -6,7 +6,7 @@ import Dashboard from "./ReportDashboard/Dashboard";
 import UserView from "./components/UserView/UserView";
 import AdminView from "./components/AdminView/AdminView";
 import EventDetails from "./components/EventDetails/EventDetails";
-import AddEvent from "./components/EventDetails/EventDetails";
+import AddEventModal from "./components/AddEventModal/AddEventModal";
 
 // import EventDetails from "./components/EventDetails/EventDetails";
 // import UserView from "./components/UserView/UserView";
@@ -58,7 +58,7 @@ function App() {
             path="/add-event"
             element={
               <Sidebar>
-                <AddEvent />
+                <AddEventModal />
               </Sidebar>
             }
           ></Route>
