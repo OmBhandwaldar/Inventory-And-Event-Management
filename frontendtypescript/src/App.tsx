@@ -14,6 +14,10 @@ import EventDetails from "./components/EventDetails/EventDetails";
 // import InventoryReport from "./components/Reports/InventoryReport";
 
 import InventoryReport from "./components/Reports/InventoryReport";
+import Card from "./Inventory/components/Card";
+import Sidebar from "./Inventory/components/Sidebar";
+
+// import { Sidebar } from "lucide-react";
 
 function App() {
   const isAdmin = false;
@@ -29,7 +33,16 @@ function App() {
           <Route path="/" element={isAdmin ? <AdminView /> : <UserView />} />
           <Route path="/event-details" element={<EventDetails />}></Route>
           {/* <Route path="/temp" element = {<InventoryReport/>}></Route> */}
-
+          <Route
+            path="/inventory"
+            element={
+              // <Card
+              //   title="Football"
+              //   description="These are the available things"
+              // />
+              <Sidebar />
+            }
+          ></Route>
           <Route path="/user-view" element={<UserView />}></Route>
           <Route path="/admin-view" element={<AdminView />}></Route>
           <Route path="/event-details" element={<EventDetails />}></Route>
