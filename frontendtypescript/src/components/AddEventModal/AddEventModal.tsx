@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import VenueManagement from "../VenueManagement/VenueManagement";
 
-const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose, selectedDate }) => {
+interface AddEventModalProps {
+  onAddEvent: (event: { title: string; fromTime: string; toTime: string; details: string; venue: string }) => void;
+  onClose: () => void;
+  selectedDate: string;
+}
+
+const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) => {
   const [title, setTitle] = useState("");
   const [fromTime, setFromTime] = useState("");
   const [toTime, setToTime] = useState("");
