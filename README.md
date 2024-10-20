@@ -25,9 +25,18 @@
     To showcase event track to admin and users
 
 ### Features 
-  Real-Time Inventory Tracking: Employees can check availability of event-related
+  * Real-Time Inventory Tracking: Employees can check availability of event-related
    materials and make requests in real-time, ensuring quick procurement and
    efficient planning.
+  * Inventory Management: Manage inventory such as event materials, marketing
+   supplies, and stationeries. Track requests from various departments and keep
+   stock levels updated.
+  * Event and Resource Booking: Allow staff and departments to request the booking
+    of venues (halls, classrooms, labs) for events or lectures. The system should
+    handle approvals and scheduling conflicts automatically
+  * Report Generation: Generate reports on inventory consumption, branch-wise and
+    employee-wise, and provide an overview of resource utilization for events and
+    activities
 
 ### Tech Stack
 
