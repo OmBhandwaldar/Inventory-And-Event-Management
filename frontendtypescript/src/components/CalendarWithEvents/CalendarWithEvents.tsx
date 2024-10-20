@@ -1,10 +1,9 @@
-// CalendarWithEvents.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import AddEventModal from "../AddEventModal/AddEventModal";
-import './CalendarWithEvents.css'; // Ensure to import the CSS file
+import "./CalendarWithEvents.css"; // Ensure to import the CSS file
 
 interface Event {
   title: string;
@@ -12,7 +11,6 @@ interface Event {
   toTime: string;
   details: string;
 }
-
 interface CalendarWithEventsProps {
   isAdmin?: boolean; // New prop to indicate if user is admin
 }
@@ -33,8 +31,12 @@ const eventsDataInitial: Record<string, Event[]> = {
       toTime: "05:00 PM",
       details: "Submit the final project report.",
     },
-    { title: "Gym", fromTime: "10:00 AM",
-      toTime: "05:00 PM", details: "Attend yoga class." },
+    {
+      title: "Gym",
+      fromTime: "10:00 AM",
+      toTime: "05:00 PM",
+      details: "Attend yoga class.",
+    },
   ],
   "2024-10-22": [
     {
@@ -47,7 +49,7 @@ const eventsDataInitial: Record<string, Event[]> = {
 };
 
 const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [events, setEvents] = useState<Event[]>([]);
   const [showAddEventModal, setShowAddEventModal] = useState(false);
   const navigate = useNavigate();
@@ -56,10 +58,15 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
     return date.toISOString().split("T")[0];
   };
 
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
-    const formattedDate = formatDate(date);
-    setEvents(eventsDataInitial[formattedDate] || []);
+  const handleDateChange = (value: Date | Date[] | null) => {
+    // If a date is selected and it's not an array, update the state
+    if (value && !Array.isArray(value)) {
+      setSelectedDate(value);
+      const formattedDate = formatDate(value);
+      setEvents(eventsDataInitial[formattedDate] || []);
+    } else {
+      setSelectedDate(null); // Reset if no valid date is selected
+    }
   };
 
   const checkForEvents = ({ date }: { date: Date }) => {
@@ -72,7 +79,7 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
   };
 
   const handleAddEvent = (newEvent: Event) => {
-    const formattedDate = formatDate(selectedDate);
+    const formattedDate = formatDate(selectedDate!); // Use ! to assert non-null
     const updatedEvents = [
       ...(eventsDataInitial[formattedDate] || []),
       newEvent,
@@ -91,7 +98,7 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
         className="w-full max-w-full border-none"
       />
       <h2 className="text-2xl font-semibold mt-6">
-        Events for {selectedDate.toDateString()}
+        Events for {selectedDate ? selectedDate.toDateString() : 'Select a date'}
       </h2>
       {events.length > 0 ? (
         <ul className="mt-4 space-y-3">
@@ -123,17 +130,9 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
         <AddEventModal
           onAddEvent={handleAddEvent}
           onClose={() => setShowAddEventModal(false)}
+          selectedDate={selectedDate!} // Use ! to assert non-null
         />
       )}
-
-    {showAddEventModal && (
-      <AddEventModal
-        onAddEvent={handleAddEvent}
-        onClose={() => setShowAddEventModal(false)}
-        selectedDate={selectedDate} // Pass selectedDate here
-      />
-    )}
-
     </div>
   );
 };

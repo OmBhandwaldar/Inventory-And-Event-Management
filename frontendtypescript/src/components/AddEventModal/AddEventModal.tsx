@@ -4,7 +4,7 @@ import VenueManagement from "../VenueManagement/VenueManagement";
 interface AddEventModalProps {
   onAddEvent: (event: { title: string; fromTime: string; toTime: string; details: string; venue: string }) => void;
   onClose: () => void;
-  selectedDate: string;
+  selectedDate: Date;
 }
 
 const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) => {
