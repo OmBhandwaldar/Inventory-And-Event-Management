@@ -669,7 +669,7 @@ import Modal from "@/utils/Modal"; // Import the modal component
 
 const InventoryReport = () => {
 
-    const [inventoryData, setInventoryData] = useState([
+    const [inventoryData] = useState([
     {
       _id: "1",
       itemName: "Projector",
@@ -713,7 +713,6 @@ const InventoryReport = () => {
       branch: "Computer",
       event: false,
     },
-    // Other inventory items...
   ]);
 
   const [isEventFiltered, setIsEventFiltered] = useState(false);
