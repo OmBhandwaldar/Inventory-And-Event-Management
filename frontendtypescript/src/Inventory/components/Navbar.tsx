@@ -28,15 +28,13 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ icon, label, href }) => {
 
 const Navbar: React.FC = () => {
   return (
-    <div className="flex items-end justify-between bg-gray-900 p-4">
-      {/* Navbar Title */}
-      <div className="text-xl font-bold text-white">PCCOE</div>
-
-
-
-      <button className="text-3xl text-white">
-        <NavbarItem icon={<FaSignOutAlt />} label="Logout" href="/logout" />
-      </button>
+    <div>
+      <div className="flex items-end justify-between bg-gray-900 p-4">
+        <div className="text-3xl font-extrabold text-white">PCCOE</div>
+        <button className="text-3xl text-white">
+          <NavbarItem icon={<FaSignOutAlt />} label="Logout" href="/logout" />
+        </button>
+      </div>
     </div>
   );
 };

@@ -55,8 +55,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       >
         {/* Sidebar Header */}
         <div className="flex justify-between items-center p-4 bg-gray-800">
-          <span className={`text-xl font-bold ${!isOpen && "hidden"}`}>
-            Shadcn
+          <span className={`text-xl font-bold ml-6 ${!isOpen && "hidden"}`}>
+            {isOpen && 'Close'}
           </span>
           <button onClick={toggleSidebar}>
             <HiMenuAlt3 className="text-3xl" />
