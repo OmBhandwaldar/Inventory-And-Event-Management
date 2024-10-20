@@ -6,7 +6,11 @@ interface RequestVenueModalProps {
   onClose: () => void;
 }
 
-const RequestVenueModal: React.FC<RequestVenueModalProps> = ({ selectedVenue, onRequestSuccess, onClose }) => {
+const RequestVenueModal: React.FC<RequestVenueModalProps> = ({
+  selectedVenue,
+  onRequestSuccess,
+  onClose,
+}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,7 +21,7 @@ const RequestVenueModal: React.FC<RequestVenueModalProps> = ({ selectedVenue, on
       const response = await fetch("/api/request-venue", {
         method: "POST",
         body: JSON.stringify({ venue: selectedVenue }),
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       });
 
       if (response.ok) {
@@ -26,7 +30,12 @@ const RequestVenueModal: React.FC<RequestVenueModalProps> = ({ selectedVenue, on
         throw new Error("Venue request failed");
       }
     } catch (err) {
-      setError(err.message);
+      // Check if the error is an instance of Error and handle it
+      if (err instanceof Error) {
+        setError(err.message); // Use the error message
+      } else {
+        setError("An unknown error occurred"); // Fallback error message
+      }
     } finally {
       setLoading(false);
     }
@@ -35,12 +44,16 @@ const RequestVenueModal: React.FC<RequestVenueModalProps> = ({ selectedVenue, on
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Request Venue: {selectedVenue}</h2>
+        <h2 className="text-2xl font-bold mb-4">
+          Request Venue: {selectedVenue}
+        </h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="flex justify-end">
           <button
             onClick={handleVenueRequest}
-            className={`bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             disabled={loading}
           >
             {loading ? "Requesting..." : "Request Venue"}
