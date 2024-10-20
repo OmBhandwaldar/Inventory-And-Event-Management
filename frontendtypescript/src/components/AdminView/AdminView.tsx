@@ -1,6 +1,6 @@
 // AdminView.tsx
-import React from 'react';
-import CalendarWithEvents from '../CalendarWithEvents/CalendarWithEvents';
+import React from "react";
+import CalendarWithEvents from "../CalendarWithEvents/CalendarWithEvents";
 
 interface AdminViewProps {
   title?: string; // Optional title prop
