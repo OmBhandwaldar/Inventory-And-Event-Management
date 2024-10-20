@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import VenueManagement from "../VenueManagement/VenueManagement";
 
-interface AddEventModalProps {
-  onAddEvent: (event: { title: string; time: string; details: string }) => void;
-  onClose: () => void;
-}
-
-const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) => {
+const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose, selectedDate }) => {
   const [title, setTitle] = useState("");
-  const [time, setTime] = useState("");
+  const [fromTime, setFromTime] = useState("");
+  const [toTime, setToTime] = useState("");
   const [details, setDetails] = useState("");
+  const [venue, setVenue] = useState("");
+  const [showVenueManagement, setShowVenueManagement] = useState(false);
+
+  const handleVenueRequest = (requestedVenue: string) => {
+    setVenue(requestedVenue);
+    setShowVenueManagement(false);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAddEvent({ title, time, details });
+    onAddEvent({ title, fromTime, toTime, details, venue });
     onClose();
   };
 
@@ -32,11 +36,21 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) =>
             />
           </div>
           <div className="mb-4">
-            <label className="block font-medium mb-1">Time:</label>
+            <label className="block font-medium mb-1">From Time:</label>
             <input
               type="text"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
+              value={fromTime}
+              onChange={(e) => setFromTime(e.target.value)}
+              className="w-full border border-gray-300 p-2 rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block font-medium mb-1">To Time:</label>
+            <input
+              type="text"
+              value={toTime}
+              onChange={(e) => setToTime(e.target.value)}
               className="w-full border border-gray-300 p-2 rounded-md"
               required
             />
@@ -48,6 +62,25 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) =>
               onChange={(e) => setDetails(e.target.value)}
               className="w-full border border-gray-300 p-2 rounded-md"
             />
+          </div>
+          <div className="mb-4">
+            <label className="block font-medium mb-1">Select Venue:</label>
+            <input
+              type="text"
+              value={venue}
+              onChange={(e) => setVenue(e.target.value)}
+              className="w-full border border-gray-300 p-2 rounded-md"
+              placeholder="Select a venue"
+              required
+              readOnly
+            />
+            <button
+              type="button"
+              onClick={() => setShowVenueManagement(true)}
+              className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md"
+            >
+              Request Venue
+            </button>
           </div>
           <div className="flex justify-end">
             <button
@@ -65,6 +98,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAddEvent, onClose }) =>
             </button>
           </div>
         </form>
+
+        {showVenueManagement && <VenueManagement onSelectVenue={handleVenueRequest} />}
       </div>
     </div>
   );

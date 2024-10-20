@@ -118,8 +118,10 @@ const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
         <AddEventModal
           onAddEvent={handleAddEvent}
           onClose={() => setShowAddEventModal(false)}
+          selectedDate={selectedDate} // Pass selectedDate here
         />
       )}
+
     </div>
   );
 };

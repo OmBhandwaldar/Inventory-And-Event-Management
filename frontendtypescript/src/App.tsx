@@ -6,6 +6,7 @@ import Dashboard from "./ReportDashboard/Dashboard";
 import UserView from "./components/UserView/UserView";
 import AdminView from "./components/AdminView/AdminView";
 import EventDetails from "./components/EventDetails/EventDetails";
+import AddEvent from "./components/EventDetails/EventDetails";
 
 // import EventDetails from "./components/EventDetails/EventDetails";
 // import UserView from "./components/UserView/UserView";
@@ -20,7 +21,7 @@ import Navbar from "./Inventory/components/Navbar";
 // import { Sidebar } from "lucide-react";
 
 function App() {
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <>
       <Router>
@@ -30,9 +31,10 @@ function App() {
           <Route path="/login" element={<UserLogin />}></Route>
           <Route path="/signup" element={<UserSignup />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-
+    
           <Route path="/" element={isAdmin ? <AdminView /> : <UserView />} />
           <Route path="/event-details" element={<EventDetails />}></Route>
+          <Route path="/add-event" element={<AddEvent />}></Route>
           {/* <Route path="/temp" element = {<InventoryReport/>}></Route> */}
 
           <Route path="/user-view" element={<UserView />}></Route>
