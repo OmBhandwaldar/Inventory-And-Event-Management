@@ -13,9 +13,10 @@
 ### Tech Stack
 
 ### Screenshots
-![Screenshot 2024-10-20 203652](https://github.com/user-attachments/assets/aa6b0809-743d-4b75-bee5-415b81142045)
-![image](https://github.com/user-attachments/assets/5c7d0e9a-e2de-4c20-8c26-62e526a66484)
-![image](https://github.com/user-attachments/assets/75b003e8-00a1-476d-8460-aaf786cd71e0)
+![image](https://github.com/user-attachments/assets/875e6bd9-b081-4812-9ccc-229a75496777)
+![image](https://github.com/user-attachments/assets/6ad7d10a-3fb3-4fa7-a942-3ee7b3a457cc)
+![image](https://github.com/user-attachments/assets/bc0da5e8-24e6-4397-8d23-26353875f086)
+
 
 # New added events are listed down for the respective date/day 
 # Day having event will show the effect
