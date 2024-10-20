@@ -14,7 +14,7 @@ const EventDetails: React.FC = () => {
   const event = location.state?.event as Event;
 
   const handleClose = () => {
-    navigate("/user-view");
+    navigate("/");
   };
 
   if (!event) {
