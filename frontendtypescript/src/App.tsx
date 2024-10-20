@@ -40,7 +40,7 @@ function App() {
           <Route path="/user-view" element={<UserView />}></Route>
           <Route path="/admin-view" element={<AdminView />}></Route>
           <Route path="/event-details" element={<EventDetails />}></Route>
-          <Route path="/temp" element={<InventoryReport />}></Route>
+          <Route path="/inventoryreports" element={<InventoryReport />}></Route>
         </Routes>
       </Router>
     </>

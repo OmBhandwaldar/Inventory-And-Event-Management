@@ -551,7 +551,8 @@ const InventoryReport = () => {
 
   return (
     <>
-      <div className="flex justify-between mb-5">
+     <div className="mx-9 mt-5">
+      <div className="flex justify-between mb-6">
         <SearchBar setSearchTerm={setSearchTerm} /> {/* Pass the setter function to SearchBar */}
         <div className="relative">
           <button
@@ -595,62 +596,64 @@ const InventoryReport = () => {
       </div>
 
       {/* Table code remains unchanged */}
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Quantity
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Branch
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Event
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Event Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((item) => (
-              <tr
-                key={item._id}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-              >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {item.itemName}
+     
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Product name
                 </th>
-                <td className="px-6 py-4">{item.quantity}</td>
-                <td className="px-6 py-4">{item.branch}</td>
-                <td className="px-6 py-4">
-                  {item.event === false ? "none" : "True"}
-                </td>
-                <td className="px-6 py-4">
-                  {item.event === false ? "none" : item.eventName}
-                </td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Edit
-                  </a>
-                </td>
+                <th scope="col" className="px-6 py-3">
+                  Quantity
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Branch
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Event
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Event Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredData.map((item) => (
+                <tr
+                  key={item._id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {item.itemName}
+                  </th>
+                  <td className="px-6 py-4">{item.quantity}</td>
+                  <td className="px-6 py-4">{item.branch}</td>
+                  <td className="px-6 py-4">
+                    {item.event === false ? "none" : "True"}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item.event === false ? "none" : item.eventName}
+                  </td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
