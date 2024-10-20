@@ -21,10 +21,8 @@
   Navbar and Sidebar: Components for navigation throughout the application.
  * Reporting:
   * InventoryReport: A component to manage or display inventory reports.
-* Calendar:
-    Real-Time Inventory Tracking: Employees can check availability of event-related
-    materials and make requests in real-time, ensuring quick procurement and
-    efficient planning.
+ * Calendar:
+    To showcase event track to admin and users
 
 ### Features 
   Real-Time Inventory Tracking: Employees can check availability of event-related
@@ -39,8 +37,8 @@
 ![image](https://github.com/user-attachments/assets/bc0da5e8-24e6-4397-8d23-26353875f086)
 
 
-# New added events are listed down for the respective date/day 
-# Day having event will show the effect
+### New added events are listed down for the respective date/day 
+### Day having event will show the effect
 ![image](https://github.com/user-attachments/assets/a4ae4f51-2d6a-4cc1-8a33-34d9fdd3d92d)
 
 ![image](https://github.com/user-attachments/assets/5d27f753-d67d-4a8b-b528-4434ad2757bc)
