@@ -4,8 +4,23 @@
 ### Problem statement
 # PCCOE Inventory and Event Management System
 
-### Description
- Brief description of your project.
+# Description
+ ## Project Overview
+ User Management: Users can log in and sign up. Admins and regular users have different views and functionalities.
+ Event Management: Users (especially admins) can add events, view event details, and possibly manage venues.
+ Dashboard: A central place where users can access reports and insights about events.
+ Reports: Components like InventoryReport suggest that you are likely tracking various metrics or statistics related to events or inventory.
+
+ ## Key Components
+ User Authentication: UserLogin and UserSignup components handle user authentication.
+ Event Management:
+   AddEventModal: A modal for adding new events, with the ability to select venues.
+   EventDetails: A component that displays detailed information about a specific event.
+   UserView and AdminView: Different views tailored to the user's role.
+ Navigation and Layout:
+  Navbar and Sidebar: Components for navigation throughout the application.
+ Reporting:
+  InventoryReport: A component to manage or display inventory reports.
 
 ### Features 
  List all the features used.
