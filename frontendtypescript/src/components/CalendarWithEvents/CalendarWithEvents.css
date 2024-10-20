@@ -1,3 +1,92 @@
+/* CalendarWithEvents.css */
+
+.container {
+  background-color: #fff; /* White background for the container */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h1 {
+  color: #333; /* Dark color for the title */
+}
+
+h2 {
+  color: #666; /* Gray color for the subheading */
+}
+
+/* Style the calendar itself */
+.react-calendar {
+  border: none; /* Remove default border */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Prevent overflow of child elements */
+}
+
+.react-calendar__month-view__days {
+  margin: 0; /* Remove default margin */
+}
+
+/* Style the tiles (days) */
+.react-calendar__tile {
+  padding: 1rem; /* Add padding for touch targets */
+  text-align: center; /* Center text in tiles */
+  color: #555; /* Light gray text color */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+.react-calendar__tile:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Style the active date */
+.react-calendar__tile--active {
+  background-color: #007bff; /* Blue background for active date */
+  color: white; /* White text for better contrast */
+}
+
+/* Style for event dates */
+.event-date {
+  animation: pulse 1s infinite;
+  background-color: rgba(255, 165, 0, 0.3);
+  border-radius: 10px;
+}
+
+.event-date:hover {
+  background-color: rgba(255, 165, 0, 0.5);
+}
+
+/* Style for the event list */
+ul {
+  list-style: none; /* Remove bullets from list */
+  padding: 0; /* Remove default padding */
+}
+
+li {
+  background-color: #f0f8ff; /* Light background for events */
+  border-radius: 5px; /* Rounded corners */
+  padding: 12px; /* Padding for the event item */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+li:hover {
+  background-color: #e0f7fa; /* Light cyan background on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Add modal styling */
+.add-event-modal {
+  background-color: white; /* White background for modal */
+  padding: 20px; /* Padding inside modal */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Button styles */
+button {
+  cursor: pointer; /* Pointer cursor for buttons */
+}
+
+/* Pulse animation */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -10,13 +99,10 @@
   }
 }
 
-.event-date {
-  animation: pulse 1s infinite; /* Add animation to the event dates */
-  background-color: rgba(255, 165, 0, 0.3); /* Optional: Light background color */
-  border-radius: 10px; /* Optional: Rounded appearance */
-}
 
-.event-date:hover {
-  background-color: rgba(255, 165, 0, 0.5); /* Darker on hover */
-  border-radius: 10px; /* Optional: Rounded appearance */
+/* more styles  */
+
+abbr:where([title]) {
+  /* -webkit-text-decoration: underline dotted; */
+  text-decoration: none !important;
 }

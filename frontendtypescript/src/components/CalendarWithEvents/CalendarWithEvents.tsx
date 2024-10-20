@@ -1,3 +1,4 @@
+// CalendarWithEvents.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
@@ -9,6 +10,10 @@ interface Event {
   title: string;
   time: string;
   details: string;
+}
+
+interface CalendarWithEventsProps {
+  isAdmin?: boolean; // New prop to indicate if user is admin
 }
 
 const eventsDataInitial: Record<string, Event[]> = {
@@ -36,7 +41,7 @@ const eventsDataInitial: Record<string, Event[]> = {
   ],
 };
 
-const CalendarWithEvents: React.FC = () => {
+const CalendarWithEvents: React.FC<CalendarWithEventsProps> = ({ isAdmin }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [events, setEvents] = useState<Event[]>([]);
   const [showAddEventModal, setShowAddEventModal] = useState(false);
@@ -98,12 +103,14 @@ const CalendarWithEvents: React.FC = () => {
       ) : (
         <div className="mt-4">
           <p>No events for this date.</p>
-          <button
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            onClick={() => setShowAddEventModal(true)}
-          >
-            Add Event
-          </button>
+          {isAdmin && ( // Show the button only for admin
+            <button
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              onClick={() => setShowAddEventModal(true)}
+            >
+              Add Event
+            </button>
+          )}
         </div>
       )}
 
