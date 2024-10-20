@@ -36,6 +36,7 @@ router.get('/inventory/csv', async (req, res) => {
 });
 
 
+
 router.get('/inventory/pdf', async (req, res) => {
   console.log('in inventory/pdf....');
   const doc = new PDFDocument({
@@ -92,6 +93,7 @@ router.get('/inventory/pdf', async (req, res) => {
     },
     // Add more items as required
   ];
+
 
   const rowHeight = 30; // Row height
   const rowMargin = 5; // Margin inside cells

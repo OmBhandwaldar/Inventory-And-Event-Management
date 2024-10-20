@@ -6,7 +6,9 @@ const Header = () => {  return (
           Jan 20, 2023 - Feb 09, 2023
         </div>
         <button className="bg-white text-gray-900 px-4 py-2 rounded-lg">
-          Download
+          <a href="/inventoryreports">
+            View Reports
+          </a>
         </button>
       </div>
     </div>

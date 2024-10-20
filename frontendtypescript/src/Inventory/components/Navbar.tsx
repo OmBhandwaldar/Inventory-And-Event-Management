@@ -30,17 +30,10 @@ const Navbar: React.FC = () => {
   return (
     <div className="flex items-end justify-between bg-gray-900 p-4">
       {/* Navbar Title */}
-      <div className="text-xl font-bold">Shadcn</div>
+      <div className="text-xl font-bold text-white">PCCOE</div>
 
-      {/* Navbar Links */}
-      <div className="flex space-x-4">
-        <NavbarItem icon={<FaHome />} label="Home" href="/" />
-        <NavbarItem icon={<FaUsers />} label="Users" href="/users" />
-        <NavbarItem icon={<FaChartLine />} label="Reports" href="/reports" />
-        <NavbarItem icon={<FaCog />} label="Settings" href="/settings" />
-      </div>
 
-      {/* Menu Toggle Button */}
+
       <button className="text-3xl text-white">
         <NavbarItem icon={<FaSignOutAlt />} label="Logout" href="/logout" />
       </button>

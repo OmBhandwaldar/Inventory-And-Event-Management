@@ -18,7 +18,7 @@ import InventoryReport from "./components/Reports/InventoryReport";
 
 import Navbar from "./Inventory/components/Navbar";
 
-// import { Sidebar } from "lucide-react";
+import Sidebar from "./Inventory/components/Sidebar";
 
 function App() {
   const isAdmin = true;
@@ -31,12 +31,57 @@ function App() {
           <Route path="/login" element={<UserLogin />}></Route>
           <Route path="/signup" element={<UserSignup />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-    
-          <Route path="/" element={isAdmin ? <AdminView /> : <UserView />} />
-          <Route path="/event-details" element={<EventDetails />}></Route>
+
+          <Route
+            path="/"
+            element={
+              isAdmin ? (
+                <Sidebar>
+                  <AdminView />{" "}
+                </Sidebar>
+              ) : (
+                <Sidebar>
+                  <UserView />
+                </Sidebar>
+              )
+            }
+          />
+          <Route
+            path="/event-details"
+            element={
+              <Sidebar>
+                <EventDetails />
+              </Sidebar>
+            }
+          ></Route>
+          <Route
+            path="/add-event"
+            element={
+              <Sidebar>
+                <AddEvent />
+              </Sidebar>
+            }
+          ></Route>
           {/* <Route path="/temp" element = {<InventoryReport/>}></Route> */}
 
-          <Route path="/temp" element={<InventoryReport />}></Route>
+          <Route path="/user-view" element={<UserView />}></Route>
+          <Route
+            path="/admin-view"
+            element={
+              <Sidebar>
+                <AdminView />
+              </Sidebar>
+            }
+          ></Route>
+          <Route path="/event-details" element={<EventDetails />}></Route>
+          <Route
+            path="/inventoryreports"
+            element={
+              <Sidebar>
+                <InventoryReport />
+              </Sidebar>
+            }
+          ></Route>
         </Routes>
       </Router>
     </>

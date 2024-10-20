@@ -34,7 +34,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   );
 };
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  children: React.ReactNode;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(true);
 
   const toggleSidebar = () => {
@@ -98,11 +102,8 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-grow bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold">Welcome to the Dashboard</h1>
-        <p className="mt-4">This is where the main content goes...</p>
-      </div>
+      {/* Main Content Area */}
+      <div className="flex-grow bg-gray-100 p-6">{children}</div>
     </div>
   );
 };
