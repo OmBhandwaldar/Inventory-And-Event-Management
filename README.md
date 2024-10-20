@@ -12,18 +12,24 @@
  Reports: Components like InventoryReport suggest that you are likely tracking various metrics or statistics related to events or inventory.
 
  ## Key Components
- User Authentication: UserLogin and UserSignup components handle user authentication.
- Event Management:
-   AddEventModal: A modal for adding new events, with the ability to select venues.
-   EventDetails: A component that displays detailed information about a specific event.
-   UserView and AdminView: Different views tailored to the user's role.
- Navigation and Layout:
+ * User Authentication: UserLogin and UserSignup components handle user authentication.
+ * Event Management:
+   * AddEventModal: A modal for adding new events, with the ability to select venues.
+   * EventDetails: A component that displays detailed information about a specific event.
+   * UserView and AdminView: Different views tailored to the user's role.
+ * Navigation and Layout:
   Navbar and Sidebar: Components for navigation throughout the application.
- Reporting:
-  InventoryReport: A component to manage or display inventory reports.
+ * Reporting:
+  * InventoryReport: A component to manage or display inventory reports.
+* Calendar:
+    Real-Time Inventory Tracking: Employees can check availability of event-related
+    materials and make requests in real-time, ensuring quick procurement and
+    efficient planning.
 
 ### Features 
- List all the features used.
+  Real-Time Inventory Tracking: Employees can check availability of event-related
+   materials and make requests in real-time, ensuring quick procurement and
+   efficient planning.
 
 ### Tech Stack
 
