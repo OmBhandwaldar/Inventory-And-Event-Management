@@ -17,8 +17,8 @@ const salesData = [
 const RecentSales = () => {
   return (
     <div className="bg-gray-800 p-6 rounded-lg w-full md:w-1/3">
-      <h2 className="text-lg mb-4">Recent Sales</h2>
-      <p className="mb-4">You made 265 sales this month.</p>
+      <h2 className="text-lg mb-4">Recent Events</h2>
+      <p className="mb-4">You made 9 events this month.</p>
       <ul>
         {salesData.map((sale, index) => (
           <li key={index} className="flex justify-between mb-4">
