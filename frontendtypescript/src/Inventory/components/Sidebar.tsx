@@ -56,11 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         {/* Sidebar Header */}
         <div className="flex justify-between items-center p-4 bg-gray-800">
           <span className={`text-xl font-bold ml-6 ${!isOpen && "hidden"}`}>
-<<<<<<< HEAD
             {isOpen && 'Menu'}
-=======
-            {isOpen && "Close"}
->>>>>>> c2354c31962a4dd981eeacdae94b7ad80e18f8ee
           </span>
           <button onClick={toggleSidebar}>
             <HiMenuAlt3 className="text-3xl" />
