@@ -3,8 +3,10 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoose =  require('mongoose');
+require('dotenv').config(); // Load environment variables from .env file
 
-const url = "mongodb+srv://ashitosh123:ashitosh@cluster0.yva6o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+const url = process.env.MONGO_URL; // Access MONGO_URL from environment variables
 
 const start = async ()=>{
     const connect = await mongoose.connect(url);
@@ -20,19 +22,19 @@ const start = async ()=>{
 
 }
 
-const { Inventory } = require('./db');
+// const { Inventory } = require('./db');
 
-const getInventory = async ()=>{ 
-    try { 
-        const invent = await Inventory.find({}); 
-        console.log(invent); 
-    } catch (error) { 
-        console.log(error) 
-    } 
-}
+// const getInventory = async ()=>{ 
+//     try { 
+//         const invent = await Inventory.find({}); 
+//         console.log(invent); 
+//     } catch (error) { 
+//         console.log(error) 
+//     } 
+// }
 
 start();
-getInventory();
+// getInventory();
 
 app.use(cors());
 app.use(express.json());
