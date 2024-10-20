@@ -46,12 +46,7 @@
  [Link to Deployed Solution]
 
 ### Video URL
- Link to Demo Video.
+ [Link to Demo Video.](https://drive.google.com/file/d/1UadcTHR1DwYydblWjME_Fp4S6WDvomr6/view?usp=drive_link)
 
 ### Run Commands
- Add the commands needed to run your project.
-
-### Remarks
- Any additional things you want to share about your project.
-
-Thank you
+ npm run dev
