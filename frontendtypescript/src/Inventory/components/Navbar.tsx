@@ -7,6 +7,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 interface NavbarItemProps {
   icon: React.ReactNode;
@@ -30,7 +31,9 @@ const Navbar: React.FC = () => {
   return (
     <div>
       <div className="flex items-end justify-between bg-gray-900 p-4">
-        <div className="text-3xl font-extrabold text-white">PCCOE</div>
+        <Link to="/">
+          <div className="text-3xl font-extrabold text-white">PCCOE</div>
+        </Link>
         <button className="text-3xl text-white">
           <NavbarItem icon={<FaSignOutAlt />} label="Logout" href="/logout" />
         </button>
