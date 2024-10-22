@@ -8,6 +8,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
       const inventoryData = await Inventory.find({});
+      console.log('in api/v1/inventory')
+      console.log(inventoryData)
       res.json(inventoryData);
     } catch (error) {
       res.status(500).json({ message: 'Error generating report', error });
