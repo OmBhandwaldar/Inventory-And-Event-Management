@@ -1,14 +1,48 @@
-import  { useState } from "react";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: any) => {
+  const [loading, setLoading] = useState(false); // Added loading state
+  const [error, setError] = useState<string | null>(null); // Added error state
+  const navigate = useNavigate();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    setLoading(true);
+    setError(null); // Reset error before new request
+
+    try {
+      // Simulate an API request for login
+      const response = await fetch("http://localhost:3000/api/v1/user/signin", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        // Simulate successful login (e.g., navigate or set auth token)
+        console.log("Login successful");
+        const data = await response.json();
+        const token = data.token;
+        if (!token) {
+          throw new Error("Login Failed");
+        }
+        localStorage.setItem("token", token);
+        console.log("Stored successfully");
+        navigate("/user-view");
+      } else {
+        throw new Error("Login failed");
+      }
+    } catch (err) {
+      // Handle error
+      if (err instanceof Error) {
+        setError(err.message); // Display error message
+      } else {
+        setError("An unknown error occurred");
+      }
+    } finally {
+      setLoading(false); // Reset loading state
+    }
   };
 
   return (
@@ -16,6 +50,11 @@ const Login = () => {
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
+          {error && (
+            <div className="mb-4 text-red-500">
+              <p>{error}</p> {/* Display error message */}
+            </div>
+          )}
           <div className="mb-4">
             <label className="block text-gray-700">Email/Username</label>
             <input
@@ -52,8 +91,9 @@ const Login = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+            disabled={loading} // Disable button during loading
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>
