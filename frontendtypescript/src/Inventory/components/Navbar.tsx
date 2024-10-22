@@ -1,42 +1,44 @@
 import React from "react";
-import {
-  // FaHome,
-  // FaUsers,
-  // FaChartLine,
-  // FaCog,
-  FaSignOutAlt,
-} from "react-icons/fa";
-// import { HiMenuAlt3 } from "react-icons/hi";
+import useLogout from "@/logout/Logout"; // Ensure the path is correct
+import { FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+// import ProtectedRoute from "@/signup/ProtectedRoute";
+import isAuthenticated from "@/signup/ProtectedRoute";
 
-interface NavbarItemProps {
+const NavbarItem: React.FC<{
   icon: React.ReactNode;
   label: string;
-  href: string;
-}
-
-const NavbarItem: React.FC<NavbarItemProps> = ({ icon, label, href }) => {
+  onClick?: () => void;
+}> = ({ icon, label, onClick }) => {
   return (
-    <a
-      href={href}
-      className="flex items-center gap-2 p-2 text-lg text-white hover:bg-gray-800 rounded-md cursor-pointer duration-200"
+    <div
+      className="flex text-xl flex-start items-center cursor-pointer text-white"
+      onClick={onClick}
     >
-      <div>{icon}</div>
+      <div className="mr-1">{icon}</div>
       <div>{label}</div>
-    </a>
+    </div>
   );
 };
 
 const Navbar: React.FC = () => {
+  const logout = useLogout(); // Call the useLogout hook
+
   return (
     <div>
       <div className="flex items-end justify-between bg-gray-900 p-4">
         <Link to="/">
           <div className="text-3xl font-extrabold text-white">PCCOE</div>
         </Link>
-        <button className="text-3xl text-white">
-          <NavbarItem icon={<FaSignOutAlt />} label="Logout" href="/logout" />
-        </button>
+        {/* <ProtectedRoute> */}
+        {isAuthenticated() ? (
+          <NavbarItem
+            icon={<FaSignOutAlt />}
+            label="Logout"
+            onClick={logout} // Call the logout function on click
+          />
+        ) : null}
+        {/* </ProtectedRoute> */}
       </div>
     </div>
   );
