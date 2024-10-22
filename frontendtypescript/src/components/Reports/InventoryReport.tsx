@@ -1,16 +1,23 @@
 import { useState, useRef, useEffect } from "react";
+import { IoInformationCircleOutline } from "react-icons/io5";
 import SearchBar from "@/utils/SearchBar";
 import Modal from "@/utils/Modal"; // Import the modal component
+import DescModal from "@/utils/DescModal";
 
 interface InventoryItem {
   _id: string;
   itemName: string;
   quantity: number;
   description: string;
+  request: string;
   branch: string;
   event: boolean;
   eventName?: string;
 }
+
+// const role = localStorage.getItem("role");
+const role = 'Studenst';
+console.log("Role:", role);
 
 const InventoryReport = () => {
   const [inventData, setInventData] = useState<InventoryItem[]>([]);
@@ -36,6 +43,7 @@ const InventoryReport = () => {
     fetchData();
   }, []);
 
+
   const [isEventFiltered, setIsEventFiltered] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -43,6 +51,7 @@ const InventoryReport = () => {
 
   const [selectedProduct, setSelectedProduct] = useState<InventoryItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDescModalOpen, setIsDescModalOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -88,15 +97,28 @@ const InventoryReport = () => {
     setIsEventFiltered(!isEventFiltered);
   };
 
-  const handleEditClick = (product: InventoryItem) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
+  // const handleEditClick = (product: InventoryItem) => {
+  //   setSelectedProduct(product);
+  //   setIsModalOpen(true);
+  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
+  const handleInfoDescClick = (product: InventoryItem) => {
+    setSelectedProduct(product);
+    setIsDescModalOpen(true);
+  };
+
+  const handleCloseDescModal = () => {
+    setIsDescModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const handleRequestClick = () => {
+    setIsModalOpen(true);
+  }
 
   const filteredData = inventData.filter((item) => {
     const matchesSearchTerm = item.itemName
@@ -123,6 +145,7 @@ const InventoryReport = () => {
 
   return (
     <>
+      {role !== 'Student' &&
       <div className="mx-9 mt-5">
         <div className="flex justify-between mb-6">
           <SearchBar setSearchTerm={setSearchTerm} />
@@ -184,7 +207,7 @@ const InventoryReport = () => {
                   Event Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Action
+                  Requests
                 </th>
               </tr>
             </thead>
@@ -208,14 +231,108 @@ const InventoryReport = () => {
                   <td className="px-6 py-4">
                     {item.event === false ? "none" : item.eventName}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4" >
+                    Approve | Decline
+                  </td>
+                  {/* <td className="px-6 py-4" >
+                    {item.request === 'Partially Approved' ? (
+                      <div className="flex gap-2" onClick={() => handleInfoDescClick(item)}>
+                        {item.request} <IoInformationCircleOutline fontSize="23px"/>
+                      </div>
+                    ) : (
+                      item.request
+                    )}
+                  </td> */}
+                  {/* <td className="px-6 py-4"> 
                     <a
                       href="#"
                       onClick={() => handleEditClick(item)}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      Edit
+                      Request
                     </a>
+                  </td> */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Render Modal conditionally */}
+        {/* {isModalOpen && selectedProduct && (
+          <Modal product={selectedProduct} onClose={handleCloseModal} />
+        )} */}
+
+      </div> }
+
+      {role === 'Student' && 
+      <>
+      <div className="mx-9 mt-5">
+        <div className="flex justify-between mb-6">
+          <div className="relative">
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              onClick={handleRequestClick}
+            >
+              Request Product
+            </button>
+          </div>
+
+        </div>
+
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Product name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Quantity
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Branch
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Event
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Event Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Request Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((item) => (
+                <tr
+                  key={item._id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {item.itemName}
+                  </th>
+                  <td className="px-6 py-4">{item.quantity}</td>
+                  <td className="px-6 py-4">{item.branch}</td>
+                  <td className="px-6 py-4">
+                    {item.event === false ? "none" : "True"}
+                  </td>
+                  <td className="px-6 py-4">
+                    {item.event === false ? "none" : item.eventName}
+                  </td>
+                  <td className="px-6 py-4" >
+                    {item.request === 'Partially Approved' ? (
+                      <div className="flex gap-2" onClick={() => handleInfoDescClick(item)}>
+                        {item.request} <IoInformationCircleOutline fontSize="23px"/>
+                      </div>
+                    ) : (
+                      item.request
+                    )}
                   </td>
                 </tr>
               ))}
@@ -224,10 +341,16 @@ const InventoryReport = () => {
         </div>
 
         {/* Render Modal conditionally */}
-        {isModalOpen && selectedProduct && (
-          <Modal product={selectedProduct} onClose={handleCloseModal} />
+        {isModalOpen  && (
+          <Modal  onClose={handleCloseModal} />
+        )}
+
+        {isDescModalOpen && selectedProduct && (
+          <DescModal product={selectedProduct} onClose={handleCloseDescModal} />
         )}
       </div>
+      </>
+      }
     </>
   );
 };
