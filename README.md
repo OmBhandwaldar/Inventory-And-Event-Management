@@ -80,5 +80,10 @@ The proposed solution is a web-based application that automates the process of r
 To run the application locally, use the following commands:
 
 ```bash
+cd ./backend
+npm install
+node index.js
+
+cd ../frontendtypescript
 npm install
 npm run dev
