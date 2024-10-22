@@ -19,7 +19,6 @@ const start = async ()=>{
     {
         console.log("Failed to connect to MongoDB");
     }
-
 }
 
 // const { Inventory } = require('./db');
@@ -42,5 +41,6 @@ app.use(express.json());
 const mainRouter = require('./routes/index');
 
 app.use('/api/v1/', mainRouter);
+
 
 app.listen(PORT, ()=>{console.log(`Listening on port ${PORT}`)});

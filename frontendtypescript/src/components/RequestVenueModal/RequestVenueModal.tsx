@@ -13,12 +13,12 @@ const RequestVenueModal: React.FC<RequestVenueModalProps> = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  
   const handleVenueRequest = async () => {
     setLoading(true);
     try {
       // Simulate an API request to book the venue
-      const response = await fetch("/api/request-venue", {
+      const response = await fetch("http://localhost/api/v1/request-venue", {
         method: "POST",
         body: JSON.stringify({ venue: selectedVenue }),
         headers: { "Content-Type": "application/json" },
