@@ -2,8 +2,11 @@ const express = require('express');
 const zod = require('zod');
 const { User } = require('../db');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET;
 const router = express.Router();
+
+require('dotenv').config()
+const JWT_SECRET = process.env.JWT_SECRET;
+
 
 const signupSchema = zod.object({
     email: zod.string(),
@@ -35,20 +38,21 @@ router.post("/signup", async(req, res)=>{
         })
     }
 
-    const user = User.findOne({
-        username: body.username
-    })
+    // const user = User.findOne({
+    //     username: body.username
+    // })
 
-    if(user._id){
-        return res.status(411).json({
-            message: "Email already taken(User already exists)"
-        })
-    }
+    // if(user._id){
+    //     return res.status(411).json({
+    //         message: "Email already taken(User already exists)"
+    //     })
+    // }
 
 
-    const newUser = await User.create(body);
+    // const newUser = await User.create(body);
+    // const JWT_SECRET = 'asdfsdfsdf'
     const token = jwt.sign({
-        userId: newUser._id
+        userId: 'sdfsdf877UJbbhb'
     }, JWT_SECRET)
 
     res.json({
