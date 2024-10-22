@@ -39,7 +39,7 @@ The proposed solution is a web-based application that automates the process of r
 
 ## Screenshots
 
-### User Interface Overview
+### Admin Interface Overview
 
 ![UI Overview](https://github.com/user-attachments/assets/875e6bd9-b081-4812-9ccc-229a75496777)
 
