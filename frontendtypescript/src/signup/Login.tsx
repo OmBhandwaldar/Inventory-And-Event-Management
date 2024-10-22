@@ -6,6 +6,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false); // Added loading state
   const [error, setError] = useState<string | null>(null); // Added error state
   const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -21,15 +22,24 @@ const Login = () => {
 
       if (response.ok) {
         // Simulate successful login (e.g., navigate or set auth token)
-        console.log("Login successful");
+        // console.log("Login successful");
         const data = await response.json();
         const token = data.token;
+        const role = data.role || null;
+        // console.log(data);
         if (!token) {
           throw new Error("Login Failed");
         }
         localStorage.setItem("token", token);
-        console.log("Stored successfully");
-        navigate("/user-view");
+        localStorage.setItem("role", role);
+        localStorage.setItem("email", email);
+        const task = localStorage.getItem("role");
+        console.log(task);
+        if (task == "teacher") {
+          navigate("/admin-view");
+        } else if (task == "student") {
+          navigate("/user-view");
+        }
       } else {
         throw new Error("Login failed");
       }

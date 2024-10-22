@@ -5,6 +5,7 @@ const Logout = () => {
 
   const logout = () => {
     localStorage.removeItem("token"); // Remove JWT token from localStorage
+    localStorage.removeItem("role");
     navigate("/login"); // Redirect to login page
     console.log("logout successful");
   };

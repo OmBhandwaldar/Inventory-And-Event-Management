@@ -17,7 +17,6 @@ import Login from "./signup/Login";
 function App() {
   const [isAddEventModalOpen, setAddEventModalOpen] = useState(false); // State to manage modal visibility
   const selectedDate = new Date(); // Replace with your actual logic for selected date
-  const isAdmin = true;
   const handleAddEvent = (event: {
     title: string;
     fromTime: string;
@@ -29,6 +28,7 @@ function App() {
     // Add your logic to handle the added event here
     setAddEventModalOpen(false); // Close modal after adding event
   };
+  let role = localStorage.getItem("role");
 
   const handleModalClose = () => {
     setAddEventModalOpen(false); // Close modal
@@ -46,13 +46,19 @@ function App() {
             path="/admin-view"
             element={
               <Sidebar>
-                {isAuthenticated() && isAdmin ? <AdminView /> : <Login />}
+                {/* {isAuthenticated() ?  */}
+                <AdminView />
+                {/* : <Login />} */}
               </Sidebar>
             }
           />
           <Route
             path="/user-view"
-            element={isAuthenticated() ? <UserView /> : <Login />}
+            element={
+              // isAuthenticated() && role === "student" ?
+              <UserView />
+              // : <Login />
+            }
           ></Route>
           <Route
             path="/event-details"
