@@ -1,9 +1,10 @@
-/* CalendarWithEvents.css */
-
 .container {
+  max-width: 1200px; /* Set maximum width for the container */
+  margin: 0 auto; /* Center the container */
   background-color: #fff; /* White background for the container */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px; /* Add padding for spacing */
 }
 
 h1 {
@@ -19,10 +20,7 @@ h2 {
   border: none; /* Remove default border */
   border-radius: 8px; /* Rounded corners */
   overflow: hidden; /* Prevent overflow of child elements */
-}
-
-.react-calendar__month-view__days {
-  margin: 0; /* Remove default margin */
+  width: 100%; /* Make the calendar take full width of its container */
 }
 
 /* Style the tiles (days) */
@@ -99,10 +97,13 @@ button {
   }
 }
 
-
 /* more styles  */
-
 abbr:where([title]) {
-  /* -webkit-text-decoration: underline dotted; */
   text-decoration: none !important;
+}
+
+/* CalendarWithEvents.css */
+.highlight-event {
+  background-color: #514d40 !important; /* A yellowish highlight color */
+  border-radius: 50%;
 }

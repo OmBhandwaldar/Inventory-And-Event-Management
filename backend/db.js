@@ -113,7 +113,11 @@ const eventSchema = new mongoose.Schema({
         type: Date, 
         required: true 
     },
-    time: { 
+    toTime: { 
+        type: String, 
+        required: true 
+    },
+    fromTime: { 
         type: String, 
         required: true 
     },
@@ -121,34 +125,41 @@ const eventSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    organizer: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User' 
+    // organizer: { 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'User' 
+    // },
+    // participants: [{ 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'User' 
+    // }],
+    // createdAt: { 
+    //     type: Date, 
+    //     default: Date.now 
 
-    },
-    participants: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User' 
-    }],
-    createdAt: { 
-        type: Date, 
-        default: Date.now 
+    // },
+    // updatedAt: { 
+    //     type: Date, 
+    //     default: Date.now 
 
-    },
-    updatedAt: { 
-        type: Date, 
-        default: Date.now 
-
-    }
+    // }
 });
   
+const venueSchema = new mongoose.Schema({
+    name: String,
+    type: String,
+    isAvailable: Boolean,
+  });
   
+
 const User = mongoose.model('User', userRegSchema);
 const Inventory = mongoose.model('Inventory', inventorySchema);
 const Event = mongoose.model('Event', eventSchema);
+const Venue = mongoose.model("Venue", venueSchema);
 
 module.exports = {
     User,
     Inventory,
-    Event
+    Event,
+    Venue,
 }

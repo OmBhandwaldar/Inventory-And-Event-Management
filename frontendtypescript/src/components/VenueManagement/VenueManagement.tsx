@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Venue {
   name: string;
@@ -6,45 +6,41 @@ interface Venue {
   isAvailable: boolean;
 }
 
-const dummyVenues: Venue[] = [
-  { name: "Classroom A", type: "Classroom", isAvailable: true },
-  { name: "Classroom B", type: "Classroom", isAvailable: false },
-  { name: "Lab 1", type: "Lab", isAvailable: true },
-  { name: "Seminar Hall", type: "Seminar Hall", isAvailable: false },
-  { name: "Auditorium", type: "Auditorium", isAvailable: true },
-];
+interface VenueManagementProps {
+  onSelectVenue: (venue: string) => void;
+}
 
-const VenueManagement: React.FC<{ onSelectVenue: (venue: string) => void }> = ({ onSelectVenue }) => {
-  const [sortedByAvailability, setSortedByAvailability] = useState(false);
+const VenueManagement: React.FC<VenueManagementProps> = ({ onSelectVenue }) => {
+  const [venues, setVenues] = useState<Venue[]>([]);
 
-  const handleSortByAvailability = () => {
-    setSortedByAvailability(!sortedByAvailability);
-  };
+  useEffect(() => {
+    // Fetch available venues from the backend
+    const fetchVenues = async () => {
+      const response = await fetch("http://localhost:3000/api/v1/venues");
+      const data = await response.json();
+      setVenues(data);
+    };
 
-  const availableVenues = dummyVenues.filter((venue) => venue.isAvailable);
-  const sortedVenues = sortedByAvailability ? availableVenues : dummyVenues;
+    fetchVenues();
+  }, []);
+
+  console.log("venues")
+  console.log(venues)
+  console.log("venues")
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Venue Management</h2>
-      <button onClick={handleSortByAvailability} className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4">
-        {sortedByAvailability ? "Show All Venues" : "Show Available Venues"}
-      </button>
-
-      <ul className="max-h-60 overflow-y-auto space-y-2">
-        {sortedVenues.map((venue, index) => (
-          <li key={index} className={`p-4 ${venue.isAvailable ? "bg-green-100" : "bg-red-100"} rounded-md`}>
-            <span>{venue.name} ({venue.type})</span>
-            {venue.isAvailable ? (
-              <button
-                onClick={() => onSelectVenue(venue.name)}
-                className="ml-4 bg-green-500 text-white px-4 py-2 rounded-md"
-              >
-                Request This Venue
-              </button>
-            ) : (
-              <span className="ml-4 text-red-500">Occupied</span>
-            )}
+      <h2 className="text-xl font-bold mb-4">Available Venues</h2>
+      <ul>
+        {venues.map((venue, index) => (
+          <li
+            key={index}
+            className={`p-4 border rounded-md mb-2 ${
+              venue.isAvailable ? "bg-green-100" : "bg-red-100"
+            }`}
+            onClick={() => venue.isAvailable && onSelectVenue(venue.name)}
+          >
+            {venue.name} - {venue.isAvailable ? "Available" : "Unavailable"}
           </li>
         ))}
       </ul>
