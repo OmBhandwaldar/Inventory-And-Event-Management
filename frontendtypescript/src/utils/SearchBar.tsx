@@ -154,7 +154,7 @@ const SearchBar = ({ setSearchTerm }: { setSearchTerm: React.Dispatch<React.SetS
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
-  console.log(selectedCategory);
+  console.log('Searchbar category',selectedCategory);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);

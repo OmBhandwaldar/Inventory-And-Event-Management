@@ -68,7 +68,6 @@ const inventorySchema = new mongoose.Schema({
     },
     branch: {
         type: String,
-        enum: ['admin', 'teacher', 'student'],
         required: true
     },
       // Conditionally required field for event name, only if event is true
@@ -84,6 +83,27 @@ const inventorySchema = new mongoose.Schema({
                 return this.event === false || (this.event === true && value && value.length > 0);
             },
             message: "Event name is required if the item is used in an event."
+        }
+    },
+    //----------------------------------------------------
+    request: {
+        type: String,
+        enum: ['Pending', 'Approved', 'Denied', 'Partially Approved', 'None'],
+        required: true,
+        default: 'None'
+    },
+    responseDescription: {
+        type: String,
+        required: function() { 
+          // Require responseDescription if request is 'Partially Approved'
+          return this.request === 'Partially Approved';
+        },
+        validate: {
+          validator: function(value) {
+            // Ensure responseDescription is not empty when request is 'Partially Approved'
+            return this.request !== 'Partially Approved' || (value && value.length > 0);
+          },
+          message: "Response description is required if the request is 'Partially Approved'."
         }
     },
     createdBy: { 
