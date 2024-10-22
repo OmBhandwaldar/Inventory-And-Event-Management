@@ -1,6 +1,6 @@
 const salesData = [
   {
-    name: "Olivia Martin",
+    name: "Hactopia",
     email: "olivia.martin@email.com",
     amount: "$1,999.00",
   },

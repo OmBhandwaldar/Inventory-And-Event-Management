@@ -10,18 +10,25 @@ import AddEventModal from "./components/AddEventModal/AddEventModal";
 import InventoryReport from "./components/Reports/InventoryReport";
 import Navbar from "./Inventory/components/Navbar";
 import Sidebar from "./Inventory/components/Sidebar";
-import React, { useState } from "react";
-
+import { useState } from "react";
+// import ProtectedRoute from "./signup/ProtectedRoute";
+import isAuthenticated from "./signup/ProtectedRoute";
+import Login from "./signup/Login";
 function App() {
-  const isAdmin = true;
   const [isAddEventModalOpen, setAddEventModalOpen] = useState(false); // State to manage modal visibility
   const selectedDate = new Date(); // Replace with your actual logic for selected date
-
-  const handleAddEvent = (event: { title: string; fromTime: string; toTime: string; details: string; venue: string }) => {
+  const handleAddEvent = (event: {
+    title: string;
+    fromTime: string;
+    toTime: string;
+    details: string;
+    venue: string;
+  }) => {
     console.log("Event added:", event);
     // Add your logic to handle the added event here
     setAddEventModalOpen(false); // Close modal after adding event
   };
+  let role = localStorage.getItem("role");
 
   const handleModalClose = () => {
     setAddEventModalOpen(false); // Close modal
@@ -36,13 +43,23 @@ function App() {
           <Route path="/signup" element={<UserSignup />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route
-            path="/"
+            path="/admin-view"
             element={
               <Sidebar>
-                {isAdmin ? <AdminView /> : <UserView />}
+                {/* {isAuthenticated() ?  */}
+                <AdminView />
+                {/* : <Login />} */}
               </Sidebar>
             }
           />
+          <Route
+            path="/user-view"
+            element={
+              // isAuthenticated() && role === "student" ?
+              <UserView />
+              // : <Login />
+            }
+          ></Route>
           <Route
             path="/event-details"
             element={
@@ -56,7 +73,9 @@ function App() {
             element={
               <>
                 <Sidebar>
-                  <button onClick={() => setAddEventModalOpen(true)}>Add Event</button>
+                  <button onClick={() => setAddEventModalOpen(true)}>
+                    Add Event
+                  </button>
                 </Sidebar>
                 {isAddEventModalOpen && (
                   <AddEventModal
@@ -68,20 +87,23 @@ function App() {
               </>
             }
           ></Route>
-          <Route path="/user-view" element={<UserView />}></Route>
-          <Route
+          {/* <Route path="/user-view" element={<UserView />}></Route> */}
+          {/* <Route
             path="/admin-view"
             element={
               <Sidebar>
                 <AdminView />
               </Sidebar>
             }
+          ></Route> */}
+          <Route
+            path="/inventoryreports"
+            element={
+              <Sidebar>
+                <InventoryReport />
+              </Sidebar>
+            }
           ></Route>
-          <Route path="/inventoryreports" element={
-            <Sidebar>
-              <InventoryReport />
-            </Sidebar>
-          }></Route>
         </Routes>
       </Router>
     </>

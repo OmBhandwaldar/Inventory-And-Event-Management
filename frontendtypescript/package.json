@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "frontendtypescript": "file:",
     "lucide-react": "^0.453.0",
+    "nodemon": "^3.1.7",
     "react": "^18.3.1",
     "react-calendar": "^5.0.0",
     "react-dom": "^18.3.1",
