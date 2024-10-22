@@ -80,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           <SidebarItem
             icon={<FaChartLine />}
             label="Reports"
-            href="/reports"
+            href="/dashboard"
             isOpen={isOpen}
           />
           <SidebarItem
